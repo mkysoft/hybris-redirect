@@ -1,5 +1,3 @@
-*
-!.gitignore
 !redirect/
 !redirect/**
 redirect/**/gensrc
