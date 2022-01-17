@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+            
+    <enumtypes>
+        <enumtype code="RedirectHttpCode">
+            <value code="MOVED_PERMANENTLY">
+                <description>Moved Permanently</description>
+            </value>
+            <value code="MOVED_TEMPORARILY">
+                <description>Moved Temporarily</description>
+            </value>
+        </enumtype>
+    </enumtypes>
+
+	<itemtypes>
+		<itemtype
+		   code="Redirect" extends="GenericItem"
+		   jaloclass="com.mkysoft.hybris.jalo.Redirect"
+	   >
+            <deployment typecode="30100" table="redirects" />
+			<attributes>
+				<attribute qualifier="requestedUrl" type="java.lang.String">
+					<description>Requested URL</description>
+					<persistence type="property"/>
+				</attribute>
+				<attribute qualifier="targetUrl" type="java.lang.String">
+					<description>Target URL</description>
+                    <persistence type="property"/>
+				</attribute>
+                <attribute qualifier="httpCode" type="RedirectHttpCode">
+                    <persistence type="property"/>
+                </attribute>
+			</attributes>
+		</itemtype>
+	</itemtypes>
+</items>

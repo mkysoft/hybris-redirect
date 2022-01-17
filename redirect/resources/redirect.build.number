@@ -1,0 +1,11 @@
+#Ant properties
+#Thu Dec 16 18:37:41 CET 2021
+version.api=2105
+vendor=hybris
+group.id=de.hybris.platform
+name=redirect
+description=redirect
+builddate=20211216 1837
+releasedate=20210809 2305
+version=2105.5
+module.name=platform-module

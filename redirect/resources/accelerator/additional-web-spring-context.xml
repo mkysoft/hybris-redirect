@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- This filter is responsible for the 'redirect tool' -->
+    <bean id="redirectFilter" class="com.mkysoft.hybris.filters.RedirectFilter">
+        <constructor-arg name="redirectService" ref="redirectService" />
+    </bean>
+
+    <!-- add to tenant scoped filter -->
+	<bean depends-on="storefrontTenantDefaultFilterChainList" parent="listMergeDirective">
+    	<property name="add" ref="redirectFilter" />
+    	<property name="beforeBeanNames">
+   			<list value-type="java.lang.String">
+            	<value>hybrisSpringSessionFilter</value>
+        	</list>
+    	</property>
+	</bean>
+</beans>

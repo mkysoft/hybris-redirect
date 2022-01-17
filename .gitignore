@@ -1,0 +1,27 @@
+*
+!.gitignore
+!redirect/
+!redirect/**
+redirect/**/gensrc
+redirect/**/target
+redirect/**/classes
+redirect/**/testclasses
+redirect/**/bin
+redirect/**/eclipsebin
+redirect/**/.DS_Store
+redirect/**/beans.xsd
+redirect/**/extensioninfo.xsd
+redirect/**/*testclasses.xml
+redirect/**/items.xsd
+redirect/**/_ui
+
+##############################
+# ant generated files #
+##############################
+redirect/**/extensioninfo.xsd
+redirect/**/hmc.xsd
+redirect/**/platformhome.properties
+redirect/**/*-testclasses.xml
+redirect/**/beans.xsd
+redirect/**/items.xsd
+redirect/**/build.xml
