@@ -8,7 +8,6 @@ With this extension we manage dynmic requested URLs and target for redirecting t
 * Edit your local.extension file and add redirect extension to list.
 ## Usage
 1. Enter the backoffice
-2. Go to type system
-3. Find Redirect item type.
-4. Open Redirect items.
-5. Define new redirect rules.
+2. Go to WCS menu on left side
+3. Select Redirects.
+4. Define new redirect rules.
