@@ -22,6 +22,8 @@
         
         <coremodule generated="true" manager="com.mkysoft.hybris.jalo.RedirectManager" packageroot="com.mkysoft.hybris"/>
 
+        <meta key="backoffice-module" value="true"/>
+
     </extension>
               
 

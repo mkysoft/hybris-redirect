@@ -23,13 +23,16 @@
 				<attribute qualifier="requestedUrl" type="java.lang.String">
 					<description>Requested URL</description>
 					<persistence type="property"/>
+                    <modifiers optional="false" search="true"/>
 				</attribute>
 				<attribute qualifier="targetUrl" type="java.lang.String">
 					<description>Target URL</description>
                     <persistence type="property"/>
+                    <modifiers optional="false" search="true"/>
 				</attribute>
                 <attribute qualifier="httpCode" type="RedirectHttpCode">
                     <persistence type="property"/>
+                    <modifiers optional="false" search="true"/>
                 </attribute>
 			</attributes>
 		</itemtype>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config xmlns="http://www.hybris.com/cockpit/config"
+		xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+        xmlns:na="http://www.hybris.com/cockpitng/config/notifications"		
+		xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree"
+		xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+		xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+		xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
+		xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch"
+        xmlns:wizard-config="http://www.hybris.com/cockpitng/config/wizard-config"
+		xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms">
+
+    <context component="explorer-tree" merge-by="module">
+        <explorer-tree:explorer-tree>
+            <explorer-tree:navigation-node id="hmc.cms2" merge-mode="append">
+                <explorer-tree:type-node id="redirect" code="Redirect" />
+            </explorer-tree:navigation-node>
+        </explorer-tree:explorer-tree>
+    </context>
+
+    <context component="base" type="Redirect">
+        <y:base>
+            <y:labels>
+                <y:label>requestedUrl + ' --&gt; ' + targetUrl</y:label>
+                <y:shortLabel>requestedUrl</y:shortLabel>
+            </y:labels>
+        </y:base>
+    </context>
+
+    <context component="editorareaactions" type="Redirect">
+        <y:actions>
+            <y:group qualifier="common">
+                <y:label>actiongroup.common</y:label>
+                <y:action action-id="com.hybris.cockpitng.action.delete" property="currentObject" />
+            </y:group>
+        </y:actions>
+    </context>
+    
+    <context type="Redirect" component="advanced-search">
+        <as:advanced-search xmlns:as="http://www.hybris.com/cockpitng/config/advancedsearch" connection-operator="OR">
+            <as:field-list disable-attributes-comparator="false" disable-subtypes-checkbox="false">
+                <as:field name="requestedUrl" operator="like" selected="true"/>
+                <as:field name="targetUrl" operator="like" selected="false"/>
+            </as:field-list>
+            <as:sort-field name="requestedUrl" asc="false" />
+        </as:advanced-search>
+    </context>
+
+    <context component="listview" type="Redirect" parent="GenericItem">
+        <list-view:list-view>
+            <list-view:column qualifier="requestedUrl" />
+            <list-view:column qualifier="targetUrl" />
+            <list-view:column qualifier="httpCode" />
+        </list-view:list-view>
+    </context>
+
+    <context component="create-wizard" type="Redirect">
+        <wizard-config:flow id="redirectWizard" title="create.title(ctx.TYPE_CODE)">
+            <wizard-config:prepare id="redirectPrepare">
+                <wizard-config:initialize property="newRedirect" type="ctx.TYPE_CODE" />
+            </wizard-config:prepare>
+            <wizard-config:step id="step1" label="redirect.create.step1.label">
+                <wizard-config:content id="step1.content">
+                    <wizard-config:property-list root="newRedirect">
+                        <wizard-config:property qualifier="requestedUrl" />
+                        <wizard-config:property qualifier="targetUrl" />
+                        <wizard-config:property qualifier="httpCode" />
+                    </wizard-config:property-list>
+                </wizard-config:content>
+                <wizard-config:navigation id="step1.navigation">
+                    <wizard-config:cancel />
+                    <wizard-config:done visible="newRedirect.requestedUrl != null &amp;&amp; newRedirect.targetUrl != null &amp;&amp; newRedirect.httpCode != null">
+                        <wizard-config:save property="newRedirect" />
+                    </wizard-config:done>
+                </wizard-config:navigation>
+            </wizard-config:step>
+        </wizard-config:flow>
+    </context>
+
+    <context component="editor-area" type="Redirect" parent="GenericItem" merge-by="type">
+        <editorArea:editorArea>
+            <editorArea:essentials>
+                <editorArea:essentialSection name="hmc.essential" merge-mode="append">
+                    <editorArea:attribute qualifier="redirect" readonly="true" />
+                </editorArea:essentialSection>
+            </editorArea:essentials>
+            <editorArea:tab name="redirect.tab.general">
+                <editorArea:section name="redirect.section.general">
+                    <editorArea:panel colspan="2" name="redirect.panel.requestedUrl">
+                        <editorArea:attribute qualifier="requestedUrl" />
+                    </editorArea:panel>
+                    <editorArea:panel colspan="2" name="redirect.panel.targetUrl">
+                        <editorArea:attribute qualifier="targetUrl" />
+                    </editorArea:panel>
+                    <editorArea:panel colspan="2" name="redirect.panel.httpCode">
+                        <editorArea:attribute qualifier="httpCode" />
+                    </editorArea:panel>                    
+                </editorArea:section>
+            </editorArea:tab>
+        </editorArea:editorArea>
+    </context>
+
+    <context component="listview" type="Redirect">
+        <list-view:list-view>
+            <list-view:column qualifier="requestedUrl" />
+            <list-view:column qualifier="targetUrl" />
+            <list-view:column qualifier="httpCode" />
+        </list-view:list-view>
+    </context>
+
+</config>
